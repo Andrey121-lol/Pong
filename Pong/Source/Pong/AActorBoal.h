@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/StaticMeshComponent.h"
 #include "AActorBoal.generated.h"
 
 UCLASS()
@@ -14,6 +15,10 @@ class PONG_API AAActorBoal : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAActorBoal();
+
+	// Статический меш компонент
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UStaticMeshComponent* StaticMesh;
 
 protected:
 	// Called when the game starts or when spawned

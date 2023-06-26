@@ -9,6 +9,12 @@ AAActorBoal::AAActorBoal()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// Создаем статический меш компонент и присоединяем его к корневому компоненту сцены
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	StaticMesh->SetupAttachment(RootComponent);
+
+
+
 }
 
 // Called when the game starts or when spawned
