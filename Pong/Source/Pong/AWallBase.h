@@ -3,19 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "Camera/CameraComponent.h"
+#include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
-#include "APawnPlatform.generated.h"
+#include "AWallBase.generated.h"
 
 UCLASS()
-class PONG_API AAPawnPlatform : public APawn
+class PONG_API AAWallBase : public AActor
 {
 	GENERATED_BODY()
+	
+public:	
+	// Sets default values for this actor's properties
+	AAWallBase();
 
-public:
-	// Sets default values for this pawn's properties
-	AAPawnPlatform();
 	// Корневой компонент сцены
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USceneComponent* DefaultSceneRoot;
@@ -24,10 +24,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* StaticMesh;
 
-	// Камера компонент
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UCameraComponent* Camera;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,8 +31,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };
