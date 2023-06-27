@@ -16,6 +16,7 @@ class PONG_API AAPawnPlatform : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AAPawnPlatform();
+	
 	// Корневой компонент сцены
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USceneComponent* DefaultSceneRoot;
@@ -31,6 +32,10 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	
+
+	
 
 public:	
 	// Called every frame
@@ -38,5 +43,10 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	//Func
+	UFUNCTION(NetMulticast, Reliable, BlueprintCallable, Category = "MyEvent")
+	void MoveRight(float value);
+	
+	
+	//Vars
 };
