@@ -10,6 +10,7 @@
 #include "AGoal_L.h"
 #include "AGoal_R.h"
 #include "DeadZone.h"
+#include "AiPlatform.h"
 #include "AActorBoal.generated.h"
 
 UCLASS()
@@ -30,6 +31,13 @@ public:
 	AAGoal_L* Goal_L;
 	AAGoal_R* Goal_R;
 	ADeadZone* DeadZone;
+	AAiPlatform* Bot;
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
+	int ScoreL;
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
+	int ScoreR;
+	
 	bool IsGoal =false;
 	
 	UFUNCTION(NetMulticast, Reliable, BlueprintCallable, Category = "MyEvent")

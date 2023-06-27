@@ -14,6 +14,11 @@ class PONG_API AAiPlatform : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAiPlatform();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
+	UStaticMeshComponent* StaticMeshComponent;
+	
+	
 
 protected:
 	// Called when the game starts or when spawned

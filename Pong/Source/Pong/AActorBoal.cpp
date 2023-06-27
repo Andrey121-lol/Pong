@@ -26,7 +26,7 @@ void AAActorBoal::StartBoall_Implementation(FVector Value)
 void AAActorBoal::MoveBoall_Implementation(AActor* HitActor)
 {
 	Platform= Cast<AAPawnPlatform>(HitActor);
-	if (Platform)
+	if (Platform )
 	{
 		FVector NewLinearVelocity;
 		float RandFloat = FMath::RandRange(-1000.0f,1000.0f);
@@ -50,7 +50,7 @@ void AAActorBoal::MoveBoall_Implementation(AActor* HitActor)
 		IsGoal=true;
 		StaticMesh->SetPhysicsLinearVelocity(FVector(0,0,0));
 		SetActorLocation(FVector(0,0,65));
-		
+		ScoreL=ScoreL++;
 		FVector Value (1000.0f,0.0f,0.0f);
 		FTimerDelegate TimerDelegate;
 		TimerDelegate.BindUFunction(this, FName("StartBoall"), Value);
@@ -63,13 +63,24 @@ void AAActorBoal::MoveBoall_Implementation(AActor* HitActor)
 		IsGoal=true;
 		StaticMesh->SetPhysicsLinearVelocity(FVector(0,0,0));
 		SetActorLocation(FVector(0,0,65));
-		
+		ScoreR=ScoreR++;
 		FVector Value (-1000.0f,0.0f,0.0f);
 		FTimerDelegate TimerDelegate;
 		TimerDelegate.BindUFunction(this, FName("StartBoall"), Value);
 		FTimerHandle TimerHandle;
 		GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, 3.0f, false);
 	}
+	Bot=Cast<AAiPlatform>(HitActor);
+	if (Bot)
+	{
+		FVector NewLinearVelocity;
+		float RandFloat = FMath::RandRange(-1000.0f,1000.0f);
+		NewLinearVelocity.X=StaticMesh->GetPhysicsLinearVelocity().X*(-1);
+		NewLinearVelocity.Y=Bot->StaticMeshComponent->GetPhysicsLinearVelocity().Y+RandFloat;
+		NewLinearVelocity.Z=StaticMesh->GetPhysicsLinearVelocity().Z;
+		StaticMesh->SetPhysicsLinearVelocity(NewLinearVelocity);	
+	}
+	
 	DeadZone=Cast<ADeadZone>(HitActor);
 	if (DeadZone)
 	{
